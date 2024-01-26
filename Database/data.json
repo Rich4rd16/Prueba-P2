@@ -1,0 +1,21 @@
+{
+  "examenes": [
+    {
+      "idExamen": 1,
+      "nombreExamen": "Examen de Física Avanzada",
+      "preguntas": [
+        {
+          "id": 1,
+          "texto": "¿Cuál es el número atómico del hidrógeno?",
+          "opciones": [
+            "1",
+            "0",
+            "8",
+            "2"
+          ],
+          "respuestaCorrecta": "1"
+        }
+      ]
+    }
+  ]
+}
