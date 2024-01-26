@@ -15,7 +15,7 @@ const handleGuardarPregunta = async (e) => {
     e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
     // Verificar si hay campos vacíos
     if (textoPregunta.trim() === '' || opciones.some(opcion => opcion.trim() === '') || respuestaCorrecta.trim() === '') {
-        // Mostrar el modal de advertencia
+        // Mostrar el modal de advertencia en caso de no llenar el campo
         setShowModal(true);
         return;
     }
