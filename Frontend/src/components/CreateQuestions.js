@@ -7,6 +7,7 @@ const CreateQuestions = () => {
 const [textoPregunta, setTextoPregunta] = useState('');
 const [opciones, setOpciones] = useState(['', '', '', '']);
 const [respuestaCorrecta, setRespuestaCorrecta] = useState('');
+const [showModal, setShowModal] = useState(false);
 const navigate = useNavigate();
 const { idExamen } = useParams();
 
@@ -15,6 +16,7 @@ const handleGuardarPregunta = async (e) => {
     // Verificar si hay campos vacíos
     if (textoPregunta.trim() === '' || opciones.some(opcion => opcion.trim() === '') || respuestaCorrecta.trim() === '') {
         // Mostrar el modal de advertencia
+        setShowModal(true);
         return;
     }
     try {
@@ -30,6 +32,10 @@ const handleGuardarPregunta = async (e) => {
         } catch (error) {
         console.error('Error al guardar la pregunta:', error);
         }
+    };
+    const handleCloseModal = () => {
+        // Cerrar el modal de advertencia
+        setShowModal(false);
     };
     return (
         <div>
@@ -74,11 +80,20 @@ const handleGuardarPregunta = async (e) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Escriba la respuesta"
                     type="text"
-                    value={textoPregunta}
+                    value={respuestaCorrecta}
                     onChange={(e) => setRespuestaCorrecta(e.target.value)}
                 />
             </label><br />
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={handleGuardarPregunta}>Guardar Pregunta</button>
+            {/* Modal de Advertencia */}
+                {showModal && (
+                    <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={handleCloseModal}>&times;</span>
+                        <p>Llene todos los campos antes de guardar.</p>
+                    </div>
+                    </div>
+                )}
             </form>
             
         </div>
